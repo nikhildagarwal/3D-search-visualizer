@@ -4,7 +4,7 @@ import heapq
 def euclidean_distance(start, end):
     x1, y1, z1 = start
     x2, y2, z2 = end
-    return ((x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1)**2)**0.5
+    return ((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2) ** 0.5
 
 
 def manhattan_distance(start, end):
@@ -41,15 +41,19 @@ def Astar_path(start, end, grid, code, allow_diagonals):
                 path_length += euclidean_distance(cell, next_cell)
                 cell = next_cell
                 prev_node = prev_node[4]
-            path.insert(0,[0, 0, 0])
+            path.insert(0, [0, 0, 0])
             return path, list(searched), int(path_length * 1000) / 1000
         else:
             searched.add(cell)
             x, y, z = cell
             if allow_diagonals:
-                neighbors = ((x+1,y,z),(x-1,y,z),(x,y+1,z),(x,y-1,z),(x+1,y+1,z),(x-1,y-1,z),(x+1,y-1,z),(x-1,y+1,z),
-                             (x,y,z+1),(x+1,y,z+1),(x-1,y,z+1),(x,y+1,z+1),(x,y-1,z+1),(x+1,y+1,z+1),(x-1,y-1,z+1),(x+1,y-1,z+1),(x-1,y+1,z+1),
-                             (x,y,z-1),(x+1,y,z-1),(x-1,y,z-1),(x,y+1,z-1),(x,y-1,z-1),(x+1,y+1,z-1),(x-1,y-1,z-1),(x+1,y-1,z-1),(x-1,y+1,z-1))
+                neighbors = (
+                    (x + 1, y, z), (x - 1, y, z), (x, y + 1, z), (x, y - 1, z), (x + 1, y + 1, z), (x - 1, y - 1, z),
+                    (x + 1, y - 1, z), (x - 1, y + 1, z),
+                    (x, y, z + 1), (x + 1, y, z + 1), (x - 1, y, z + 1), (x, y + 1, z + 1), (x, y - 1, z + 1),
+                    (x + 1, y + 1, z + 1), (x - 1, y - 1, z + 1), (x + 1, y - 1, z + 1), (x - 1, y + 1, z + 1),
+                    (x, y, z - 1), (x + 1, y, z - 1), (x - 1, y, z - 1), (x, y + 1, z - 1), (x, y - 1, z - 1),
+                    (x + 1, y + 1, z - 1), (x - 1, y - 1, z - 1), (x + 1, y - 1, z - 1), (x - 1, y + 1, z - 1))
             else:
                 neighbors = ((x + 1, y, z), (x - 1, y, z), (x, y - 1, z), (x, y + 1, z), (x, y, z + 1), (x, y, z - 1))
             for n in neighbors:

@@ -20,8 +20,6 @@ def generate_grid(size):
             x += x[0:l]
     grid = [[[0 for _ in range(size)] for _ in range(size)] for _ in range(size)]
     for x1, y1, z1 in zip(x, y, z):
-        flag1 = random.randint(0, 1)
-        flag2 = random.randint(0, 1)
         if -30 <= (((x1 - 10)**2 + (y1 - 10)**2 + (z1 - 10)**2)-36) <= 0:
             grid[x1][y1][z1] = 1
         else:
@@ -66,7 +64,7 @@ def plot_space_path(grid, path, searched, length, amount):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     if searched is not None:
-        ax.scatter(sx, sy, sz, color='g', s=0.01, label="searched points: " + str(amount))
+        ax.scatter(sx, sy, sz, color='g', s=0.25, label="searched points: " + str(amount))
     ax.scatter(bx, by, bz, color='black', s=5)
     ax.plot(px, py, pz, label='path: ' + str(length), color='r', markersize='10')
     ax.legend()
