@@ -22,14 +22,23 @@ def generate_grid(size):
     for x1, y1, z1 in zip(x, y, z):
         # Sphere, centered with radius 6
         grid[x1][y1][z1] = 0
-        """if -30 <= (((x1 - 10)**2 + (y1 - 10)**2 + (z1 - 16)**2)-9) <= 0:
+        """if -30 <= (((x1 - 10)**2 + (y1 - 10)**2 + (z1 - 10)**2)-49) <= 0:
             grid[x1][y1][z1] = 1"""
-        if x1 == 2 and y1 < 16:
+        """if x1 == 2 and y1 < 16:
             grid[x1][y1][z1] = 1
         if x1 == 14 and y1 > 3:
-            grid[x1][y1][z1] = 1
+            grid[x1][y1][z1] = 1"""
         """if x1 in {8,9,10} and z1 > 10:
             grid[x1][y1][z1] = 1"""
+        if x1 == 5 and (z1 < 14 or z1 > 17):
+            grid[x1][y1][z1] = 1
+        if 14 <= z1 <= 17 and x1 == 5 and y1 not in {4,5,6}:
+            grid[x1][y1][z1] = 1
+
+        if x1 == 15 and (z1 < 2 or z1 > 5):
+            grid[x1][y1][z1] = 1
+        if 2 <= z1 <= 5 and x1 == 15 and y1 not in {14,15,16}:
+            grid[x1][y1][z1] = 1
     return grid
 
 
