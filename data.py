@@ -20,14 +20,20 @@ def generate_grid(size):
             x += x[0:l]
     grid = [[[0 for _ in range(size)] for _ in range(size)] for _ in range(size)]
     for x1, y1, z1 in zip(x, y, z):
-        if -30 <= (((x1 - 10)**2 + (y1 - 10)**2 + (z1 - 10)**2)-36) <= 0:
+        # Sphere, centered with radius 6
+        grid[x1][y1][z1] = 0
+        """if -30 <= (((x1 - 10)**2 + (y1 - 10)**2 + (z1 - 16)**2)-9) <= 0:
+            grid[x1][y1][z1] = 1"""
+        if x1 == 2 and y1 < 16:
             grid[x1][y1][z1] = 1
-        else:
-            grid[x1][y1][z1] = 0
+        if x1 == 14 and y1 > 3:
+            grid[x1][y1][z1] = 1
+        """if x1 in {8,9,10} and z1 > 10:
+            grid[x1][y1][z1] = 1"""
     return grid
 
 
-def plot_space_path(grid, path, searched, length, amount):
+def plot_space_path(grid, path, searched, length, amount, name, title):
     ux = []
     uy = []
     uz = []
@@ -71,5 +77,5 @@ def plot_space_path(grid, path, searched, length, amount):
     ax.set_xlabel('X Label')
     ax.set_ylabel('Y Label')
     ax.set_zlabel('Z Label')
-    ax.set_title('Optimal Path in a 3D space')
+    ax.set_title(title)
     plt.show()
